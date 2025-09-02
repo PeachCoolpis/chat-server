@@ -12,3 +12,13 @@ spring:
     url: jdbc:log4jdbc:mysql://localhost:3306/CHAT_DB
     username: root
     password: 1234
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jws-algorithms: HS256
+
+jwt:
+  secret: V0v/mqG+YsM2iZHJMO+CuXiuflr9bpeSM78qT3q3O8k=
+

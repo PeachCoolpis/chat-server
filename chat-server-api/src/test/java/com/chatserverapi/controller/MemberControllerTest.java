@@ -1,8 +1,10 @@
 package com.chatserverapi.controller;
 
 import com.chatserverapi.ControllerTestSupport;
+import com.chatserverapi.dto.MemberLoginReqDto;
 import com.chatserverapi.dto.MemberSaveReqDto;
 import com.chatserverapi.service.MemberService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +38,22 @@ class MemberControllerTest extends ControllerTestSupport {
         )
                 .andDo(print())
         ;
-        
-    
     }
+    
+    @DisplayName("")
+    @Test
+    void test2() throws Exception {
+        
+        MemberLoginReqDto loginReqDto = new MemberLoginReqDto("ddd@naver.com", "비번");
+        
+        String s = objectMapper.writeValueAsString(loginReqDto);
+        mockMvc.perform(post("/member/doLogin")
+                .contentType(APPLICATION_JSON)
+                .content(s)
+        ).andDo(print());
+        
+        
+    }
+    
 
 }
