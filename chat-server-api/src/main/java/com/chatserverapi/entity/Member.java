@@ -1,7 +1,9 @@
 package com.chatserverapi.entity;
 
+import com.chatserverapi.dto.MemberSaveReqDto;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +11,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "MEMBER")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 public class Member {
     
     @Id
@@ -22,5 +25,14 @@ public class Member {
     
     private String password;
     
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private Role role;
+    
+    
+    public Member(MemberSaveReqDto dto) {
+        this.name = dto.getName();
+        this.email = dto.getEmail();
+        this.password = dto.getPassword();
+        this.role = Role.USER;
+    }
 }
