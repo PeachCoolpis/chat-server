@@ -25,11 +25,16 @@ public class SignatureConfig {
     }
     
     @Bean
-    public OctetSequenceKey OctetSequenceKey() throws JOSEException {
-        SecretKey secretKey = new SecretKeySpec(Base64.getDecoder().decode(secret), "HmacSHA256");
-        return new OctetSequenceKey.Builder(secretKey)
+    public OctetSequenceKey octetSequenceKey(SecretKey key) throws JOSEException {
+        return new OctetSequenceKey.Builder(key)
                 .keyID("macKey")
                 .algorithm(JWSAlgorithm.HS256)
                 .build();
+    }
+    
+    @Bean
+    public SecretKey hmacKey() {
+        byte[] keyBytes = Base64.getUrlDecoder().decode(secret.trim()); // ★ UrlDecoder
+        return new SecretKeySpec(keyBytes, "HmacSHA256");
     }
 }

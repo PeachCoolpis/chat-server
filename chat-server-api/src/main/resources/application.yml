@@ -20,5 +20,5 @@ spring:
           jws-algorithms: HS256
 
 jwt:
-  secret: V0v/mqG+YsM2iZHJMO+CuXiuflr9bpeSM78qT3q3O8k=
+  secret: hJ58MK7-Ih_YKiBYpOIhHLgBThGzcMHMrHbOmUHcOEM
 
