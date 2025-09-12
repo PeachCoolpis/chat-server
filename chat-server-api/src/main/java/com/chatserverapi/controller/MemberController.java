@@ -18,25 +18,25 @@ import java.util.Map;
 import java.util.Objects;
 
 @RestController
-@RequestMapping("/member")
+@RequestMapping("/api")
 @RequiredArgsConstructor
 public class MemberController {
     
     private final MemberService memberService;
     
     
-    @PostMapping("/create")
+    @PostMapping("/member/create")
     public ResponseEntity<?> memberCreate(@RequestBody MemberSaveReqDto dto) {
         Member member = memberService.create(dto);
         return new ResponseEntity<>(member.getId(), HttpStatus.CREATED);
     }
     
-    @PostMapping("/doLogin")
+    @PostMapping("/member/doLogin")
     public Map<String, Object> doLogin(@RequestBody MemberLoginReqDto dto) throws JOSEException {
         return memberService.login(dto);
     }
     
-    @GetMapping("/list")
+    @GetMapping("/member/list")
     public List<Member> memberList(@AuthenticationPrincipal Jwt jwt) {
         System.out.println("jwt = " + jwt);
         return memberService.findAll();

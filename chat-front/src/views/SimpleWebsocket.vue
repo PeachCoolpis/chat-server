@@ -48,7 +48,7 @@ export default{
     },
     methods: {
         connectWebsocket(){
-            this.ws = new WebSocket("ws://localhost:8080/connect");
+            this.ws = new WebSocket("ws://localhost:8080/api/connect");
             
             this.ws.onopen = () => {
                 console.log("succeessfully connected!!");

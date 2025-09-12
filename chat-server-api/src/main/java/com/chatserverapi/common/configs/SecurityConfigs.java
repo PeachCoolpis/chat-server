@@ -35,7 +35,7 @@ public class SecurityConfigs {
                  .csrf(AbstractHttpConfigurer::disable)
                  .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                  .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
-                 .authorizeHttpRequests(auth -> auth.requestMatchers("/member/create","/member/doLogin").permitAll()
+                 .authorizeHttpRequests(auth -> auth.requestMatchers("/api/member/create","/api/member/doLogin").permitAll()
                          .anyRequest().authenticated()
                  );
         
@@ -48,8 +48,8 @@ public class SecurityConfigs {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.setAllowedOrigins(List.of("localhost:3000"));
-        corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
+        corsConfiguration.setAllowedOrigins(List.of("http://localhost:3000"));
+        corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE","OPTIONS"));
         corsConfiguration.setAllowedHeaders(List.of("*"));
         corsConfiguration.setExposedHeaders(List.of("Set-Cookie", "Content-Disposition"));
         corsConfiguration.setAllowCredentials(true); // (쿠키 전달용)
