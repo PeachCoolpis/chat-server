@@ -9,11 +9,11 @@ import com.nimbusds.jose.JOSEException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -34,5 +34,11 @@ public class MemberController {
     @PostMapping("/doLogin")
     public Map<String, Object> doLogin(@RequestBody MemberLoginReqDto dto) throws JOSEException {
         return memberService.login(dto);
+    }
+    
+    @GetMapping("/list")
+    public List<Member> memberList(@AuthenticationPrincipal Jwt jwt) {
+        System.out.println("jwt = " + jwt);
+        return memberService.findAll();
     }
 }

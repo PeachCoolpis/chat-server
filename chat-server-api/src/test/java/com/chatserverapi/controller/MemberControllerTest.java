@@ -24,6 +24,8 @@ class MemberControllerTest extends ControllerTestSupport {
     @Autowired
     private MemberService memberService;
     
+    private String token = "eyJraWQiOiJtYWNLZXkiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwaXJhdGlvblRpbWUiOjE3NTY3OTY5MjcsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJuYW1lIjoi67CV7KeA7IiYIiwiaWQiOjYsImV4cCI6MTc1NjgwMDUyN30.yrU-GIgOcIS4GY96JQR9_x669TT3I-LM5NHYE2dxrzg";
+    
     @DisplayName("")
     @Test
     void test() throws Exception {
@@ -51,9 +53,15 @@ class MemberControllerTest extends ControllerTestSupport {
                 .contentType(APPLICATION_JSON)
                 .content(s)
         ).andDo(print());
-        
-        
     }
     
-
+    @DisplayName("")
+    @Test
+    void test3() throws Exception {
+        String heads = "Bearer " + token;
+        
+        mockMvc.perform(get("/member/list")
+                .header("Authorization",heads)
+        ).andDo(print());
+    }
 }

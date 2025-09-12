@@ -63,4 +63,9 @@ public class MemberService {
         
         return Map.of("token", token.getAccessToken() , "user", member);
     }
+    
+    @Transactional(readOnly = true)
+    public List<Member> findAll() {
+        return memberRepository.findAll();
+    }
 }
