@@ -23,10 +23,10 @@ public class StompWebSocketConfig implements WebSocketMessageBrokerConfigurer {
         
         // publish/1 형태로 메시지 발행해야 함을 설정
         // publish로 시작하는 url패턴으로 메시지가 발행되면 @controller 객체의 @MessageMapping메서드로 라우팅
-        registry.setApplicationDestinationPrefixes("/publish");
+        registry.setApplicationDestinationPrefixes("/api/publish");
         
         
         // topic/1 형태를 메시지를 수신해야 함을 설정
-        registry.enableSimpleBroker("/topic");
+        registry.enableSimpleBroker("/api/topic");
     }
 }
