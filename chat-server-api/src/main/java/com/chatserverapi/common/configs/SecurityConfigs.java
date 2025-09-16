@@ -35,7 +35,7 @@ public class SecurityConfigs {
                  .csrf(AbstractHttpConfigurer::disable)
                  .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                  .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
-                 .authorizeHttpRequests(auth -> auth.requestMatchers("/api/member/create","/api/member/doLogin").permitAll()
+                 .authorizeHttpRequests(auth -> auth.requestMatchers("/api/member/create","/api/member/doLogin","/api/connect").permitAll()
                          .anyRequest().authenticated()
                  );
         
