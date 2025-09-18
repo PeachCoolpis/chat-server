@@ -32,7 +32,6 @@
 
 <script>
 import axios from 'axios';
-import { jwtDecode } from 'jwt-decode';
 export default{
     data(){
         return{
@@ -44,12 +43,11 @@ export default{
         async doLogin(){
             const loginData = {email:this.email, password:this.password};
             const response = await axios.post(`${process.env.VUE_APP_API_BASE_URL}/member/doLogin`, loginData);
+            const user = response.data.user;
             const token = response.data.token;
-            const role = jwtDecode(token).role;
-            const email = jwtDecode(token).sub;
             localStorage.setItem("token", token);
-            localStorage.setItem("role", role);
-            localStorage.setItem("email", email);
+            localStorage.setItem("role", user.role);
+            localStorage.setItem("email", user.email);
             window.location.href="/";
         }
     }
