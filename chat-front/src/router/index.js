@@ -29,7 +29,8 @@ const routes = [
         component: SimpleWebsocket
     },
     {
-        path:'/chatpage/:roomId',
+        //path:'/chatpage/:roomId',
+        path:'/chatpage',
         name: 'StompChatPage',
         component: StompChatPage
     },
